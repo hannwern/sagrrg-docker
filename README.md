@@ -13,17 +13,16 @@ This is all aimed at Linux. Probably Ubuntu, since that's what I tested[^*].
 
 Clone the repository to your computer:
 ```
-git clone https://github.com/hannwern/RPL-ARI-docker.git
+git clone ...
 ```
 
 Then you can add the environment script to your `.bashrc` so that the commands are always available as soon as open a terminal by doing:
 ```
-cd RPL-ARI-docker
+cd sagrrg-docker
 echo "source $(pwd)/environment" >> ~/.bashrc
 ```
 
 If you have an Nvidia GPU, you can change the `Dockerfile` and `environment` file to use these. Important lines of code: Dockerfile.gallium lines 36-41.
-
 
 
 Close & open a new terminal. The main idea now is that you can create a container that will mount one of the folders in your computer to the `src` folder of a catkin workspace in the container, and another of your folders to a folder I call `bridge` so that you can move files in and out of the container easily.

@@ -33,20 +33,20 @@ create_container () {
     create_image $ROS_VERSION
     
     # Create container using Nvidia
-    docker run --runtime=nvidia --gpus=all --net=host -i -t -d \
-        -e DISPLAY \
-        -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
-        -v $SOURCE_FOLDER:/home/$USER/catkin_ws/src \
-        -v $BRIDGE_FOLDER:/home/$USER/bridge \
-        --name $CONTAINER_NAME rpl-ari-$ROS_VERSION /bin/bash
-
-    # Create container without Nvidia
-    # docker run --net=host -i -t -d \
+    # docker run --runtime=nvidia --gpus=all --net=host -i -t -d \
     #     -e DISPLAY \
     #     -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
     #     -v $SOURCE_FOLDER:/home/$USER/catkin_ws/src \
     #     -v $BRIDGE_FOLDER:/home/$USER/bridge \
     #     --name $CONTAINER_NAME rpl-ari-$ROS_VERSION /bin/bash
+
+    # Create container without Nvidia
+    docker run --net=host -i -t -d \
+        -e DISPLAY \
+        -v /tmp/.X11-unix:/tmp/.X11-unix:rw \
+        -v $SOURCE_FOLDER:/home/$USER/catkin_ws/src \
+        -v $BRIDGE_FOLDER:/home/$USER/bridge \
+        --name $CONTAINER_NAME rpl-ari-$ROS_VERSION /bin/bash
 
     close_container $CONTAINER_NAME
 }
